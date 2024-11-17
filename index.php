@@ -31,6 +31,18 @@ function formatProductWithReturn($product){
 $formatted = formatProductWithReturn(['name'=>'gold star','price'=> 20]);
 
 echo $formatted;
+
+//variable scopes
+
+//variables can be local and global
+//inside function variables cant be called from outside function
+//using 
+global $name;
+//sets a variable as global
+//you can change global variables inside functions to pass data to another function
+//adding & before variable passes it by reference
+
+
 ?>
 
 <!DOCTYPE html>
