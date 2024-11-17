@@ -1,5 +1,11 @@
 <?php
 
+//include
+//require
+
+include('philos.php');
+echo 'end of php';
+
 ?>
 
 <!DOCTYPE html>
