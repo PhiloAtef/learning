@@ -3,7 +3,10 @@
 //include
 //require
 
-include('philos.php');
+include('philo.php');
+require('philo.php');
+
+//require WILL not run the rest of the code if the file itself does not exist
 echo 'end of php';
 
 ?>
