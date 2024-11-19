@@ -1,13 +1,13 @@
 <?php
 
-$errors = array('email'=>'','title'=>'','ingredients'=>'');
+$errors = array('email'=>' ','title'=>' ','ingredients'=>' ');
 
 if(isset($_POST['submit'])){
 
     //form validation 
     //check email 
     if(empty($_POST['email'])){
-        echo 'An email is required <br />';
+        $errors['email'] = 'An email is required <br />';
     }else{
         $email = $_POST['email'];
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     }
     //check title 
     if(empty($_POST['title'])){
-        echo 'A title is required <br />';
+        $errors['title'] = 'A title is required <br />';
     }else{
         $title = $_POST['title'];
         if(!preg_match('/^[a-zA-Z\s]+$/', $title)){
@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
     }
     //check ingredients 
     if(empty($_POST['ingredients'])){
-        echo 'at least one ingredient is required <br />';
+        $errors['ingredients'] = 'at least one ingredient is required <br />';
     }else{
         $ingredients = $_POST['ingredients'];
         if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/',$ingredients)){
