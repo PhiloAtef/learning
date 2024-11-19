@@ -1,6 +1,6 @@
 <?php
 $title = $email =$ingredients = '';
-$errors = array('email'=>' ','title'=>' ','ingredients'=>' ');
+$errors = array('email'=>'','title'=>'','ingredients'=>'');
 
 if(isset($_POST['submit'])){
 
