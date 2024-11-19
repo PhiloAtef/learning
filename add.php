@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
     }else{
         $ingredients = $_POST['ingredients'];
         if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/',$ingredients)){
-            echo 'aaa' ;
+            echo 'ingredients must be in a comma seperated list' ;
         }
     }
     //end of post check
