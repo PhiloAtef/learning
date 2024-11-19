@@ -34,7 +34,12 @@ if(isset($_POST['submit'])){
         }
     }
 
-    
+    //check error and then redirect
+    if(array_filter($errors)){
+        //stay on page
+    }else{
+        header('Location: index.php');
+    }
     //end of post check
 }
 
