@@ -1,11 +1,6 @@
 <?php
-//connecting to database
-$conn = mysqli_connect('localhost','philo','test1234','philo_pizza');
 
-if(!$conn){
-    echo 'connection error: '.mysqli_connect_error();
-}
-
+include('config/db_connect.php');
 //write query for all pizzas
 $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
 
@@ -47,7 +42,6 @@ explode(',',$pizzas[0]['ingredients']);
                     </div>
                 </div>
             </div>
-        
         <?php endforeach;?>
     </div>
 </div>
