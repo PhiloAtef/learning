@@ -1,61 +1,50 @@
 <?php
 
-//define sets a constant variable with first parameter being the name of the variable and the second parameter the value
-define('NAME', 'Yoshi');
-// $name = 'Yoshi';
-// you concatenate strings together by using dot (.)
+include('config/db_connect.php');
+//write query for all pizzas
+$sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
 
-//to traverse strings u can do $name[0]
+//make query and get results
+$results = mysqli_query($conn,$sql);
 
-//strlen() finds string length
-//strtoupper($string) and strtolower() converts string to upper case
-//str_replace() replaces string. first parameter is what i want to replace and second parameter is what i want to replace it with and third parameter is the string itself
+//fetch the resulting rows as an array 
+$pizzas = mysqli_fetch_all($results, MYSQLI_ASSOC);
 
-//arrays are written like this 
-//$peopleOne = ['shaun', 'crystal', 'ryu']
-//or
-//$peopleTwo = array('ken','chun-li')
+mysqli_free_result($results);
 
-//print_r($array) prints arrays
+//close connection 
+mysqli_close($conn);
 
-//array_push(array, value) pushes to array and array_pop(array) pops last element
-
-//count(array) works
-
-//to merge array:
-//thirdarray = array_merge(firstarray,secondarray)
-
-//associative arrays (key & value pairs) 
-//$assocArray = ['shaun' => 'black', 'mario' => 'orange', 'luigi' => 'brown']
-//to print it out, echo $assocArray['mario']
-
-//you can also do
-//$assocArray = array('bowser'=>'green')
-
-//to add a new value $assocArray['toad'] = 'pink'
-
-//u can create arrays inside arrays for multidimensional arrays
-//all array operations work on them
-
-//to embed php and html tags together what we do is 
-//see code below
- ?>
+explode(',',$pizzas[0]['ingredients']);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP tutorial</title>
-</head>
-<body>
-    <h1>User Profile Page</h1>
+<?php include('templates/header.php') ?>
 
-    <ul>
-        <?php foreach ($variable as $key => $value) { ?>
-            <h3><?php echo $variable; ?></h3>
-       <?php } ?>
-    </ul>
-    
-</body>
+<h4 class="center grey-text">Pizzas!</h4>
+
+<div class="container">
+    <div class="row">
+        <?php foreach($pizzas as $pizza): ?>
+            <div class="col s6 md3">
+                <div class="card z-depth-0">
+                    <div class="card-content center">
+                        <h6><?php echo htmlspecialchars($pizza['title'])?></h6>
+                        <ul>
+                        <?php foreach(explode(',',$pizza['ingredients']) as $ing):?>
+                            <li><?php echo htmlspecialchars($ing);?></li>
+                        <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <div class="card-action right-align">
+                        <a href="details.php?id=<?php echo $pizza['id']?>" class="brand-text">More Info</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach;?>
+    </div>
+</div>
+<?php include('templates/footer.php') ?>   
+
 </html>
